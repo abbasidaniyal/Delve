@@ -6,11 +6,20 @@ mixin RegisterModel on Model {
   bool isRegistered = false;
 
   Future<bool> register(registerData) async {
-    await http.post('url', body: json.encode(registerData)).then(
+    print(json.encode(registerData));
+    await http
+        .post('http://168.61.208.104/api/auth/register',
+        headers: {
+          "Content-Type": "application/json"
+        },
+            body: json.encode(registerData))
+        .then(
       (http.Response res) {
+        print(res.body);
         if (res.statusCode == 200) {
           print(res.body);
           isRegistered = true;
+          notifyListeners();
         }
       },
     );

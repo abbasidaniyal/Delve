@@ -21,9 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
         if(status){
           
         } else {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text("Error, Re-try"),
-          ));
+      
         }
       });
     }
@@ -117,7 +115,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
                 onSaved: (pass) {
                   setState(() {
-                    registerData["RePassword"] = pass;
+                    // registerData["RePassword"] = pass;
                   });
                 },
                 obscureText: true,

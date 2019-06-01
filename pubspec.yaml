@@ -11,7 +11,8 @@ dependencies:
   http:
   splashscreen:
   scoped_model:
-  
+  shared_preferences: ^0.5.3
+
   flutter:
     sdk: flutter
 
