@@ -53,6 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 TextFormField(
+                  obscureText: true,
                   decoration: InputDecoration(labelText: "Password"),
                   validator: (password) {
                     if (password.isEmpty) return "Please enter password";
