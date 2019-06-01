@@ -6,6 +6,7 @@ import 'package:scoped_model/scoped_model.dart';
 import '../scoped_models/main_model.dart';
 import '../widgets/drawer.dart';
 import './new_post_page.dart';
+import './post_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -31,7 +32,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(),
       appBar: AppBar(
+        title: Text("Delve"),
+        
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -43,24 +47,61 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: Container(
-        child: ListView.builder(
-          itemCount: array.length,
-          itemBuilder: (context, index) {
-            return Card(
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    child: Text(array[index].title),
+      body: ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: array.length,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return PostPage(array[index]);
+              }));
+            },
+            child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+                // height: MediaQuery.of(context).size.height * 0.8,
+                child: Card(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 25.0, vertical: 10.0),
+                  elevation: 20.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
                   ),
-                  Container(
-                    child: Text(array[index].body),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    child: Stack(
+                      children: <Widget>[
+                        Image.asset(
+                          "lib/assets/postBackground.png",
+                          fit: BoxFit.fitWidth,
+                          height: 300,
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(15.0),
+                          child: Column(
+                            children: <Widget>[
+                              Text(
+                                array[index].title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(height: 200),
+                              Container(
+                                child: Text(
+                                  array[index].body,
+                                  textAlign: TextAlign.left,
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            );
-          },
-        ),
+                )),
+          );
+        },
       ),
     );
   }

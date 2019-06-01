@@ -18,6 +18,7 @@ mixin PostModel on Model {
       if (res.statusCode == 200) {
         var temp = json.decode(res.body);
         List<dynamic> array = temp["posts"];
+        postArray = [];
 
         for (var x in array) {
           postArray.add(Post(

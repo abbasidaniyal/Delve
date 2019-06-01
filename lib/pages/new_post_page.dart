@@ -1,3 +1,4 @@
+import 'package:delve/pages/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -59,6 +60,14 @@ class _NewPostPageState extends State<NewPostPage> {
                             .createPost(model.accessToken, postData)
                             .then((onValue) {
                           postKey.currentState.dispose();
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return HomePage();
+                              },
+                            ),
+                          );
                         });
                       }
                     },
