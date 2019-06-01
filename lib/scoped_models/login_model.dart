@@ -2,7 +2,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-mixin SendCIENMail on Model {
+mixin LoginModel on Model {
   Future<bool> login(data) async {
     bool response;
     await http
