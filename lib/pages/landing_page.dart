@@ -18,6 +18,21 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
 
+  void submitRegisterForm() {
+    _formKey.currentState.save();
+    if (_formKey.currentState.validate()) {
+      MainModel model = ScopedModel.of(context);
+
+      model.register(registerData).then((status){
+        if(status){
+          
+        } else {
+      
+        }
+      });
+    }
+  }    
+
   void submitLoginForm() {
     _formKey.currentState.save();
     if (_formKey.currentState.validate()) {
@@ -33,7 +48,8 @@ class _LoginPageState extends State<LoginPage>
     }
   }    
 
-  Map<String, String> signInData = {};     
+  Map<String, String> signInData = {}; 
+  Map<String, String> registerData = {};    
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -497,7 +513,7 @@ class _LoginPageState extends State<LoginPage>
                       Padding(
                         padding: EdgeInsets.only(
                             top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
-                        child: TextField(
+                        child: TextFormField(
                           focusNode: myFocusNodeName,
                           controller: signupNameController,
                           keyboardType: TextInputType.text,
@@ -507,6 +523,7 @@ class _LoginPageState extends State<LoginPage>
                               fontSize: 16.0,
                               color: Colors.black),
                           decoration: InputDecoration(
+                            labelText: "Name",
                             border: InputBorder.none,
                             icon: Icon(
                               FontAwesomeIcons.user,
@@ -516,6 +533,9 @@ class _LoginPageState extends State<LoginPage>
                             hintStyle: TextStyle(
                                 fontFamily: "WorkSansSemiBold", fontSize: 16.0),
                           ),
+                          onSaved: (name) {setState(() {
+                           registerData["name"] = name; 
+                          });},
                         ),
                       ),
                       Container(
