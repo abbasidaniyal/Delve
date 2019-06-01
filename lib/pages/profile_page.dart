@@ -4,10 +4,10 @@ import '../models/user_profile.dart';
 
 //import 'package:intl/intl.dart';
 
-class PlayerProfilePage extends StatelessWidget {
-  UserProfile user;
+class ProfilePage extends StatelessWidget {
+  final UserProfile user;
 
-  PlayerProfilePage(this.user);
+  ProfilePage(this.user);
   @override
   Widget build(BuildContext context) {
     double nameSize = MediaQuery.of(context).size.width * 0.05;
@@ -138,9 +138,7 @@ class PlayerProfilePage extends StatelessWidget {
                       border: Border.all(color: Colors.white, width: 3.0),
                       borderRadius: BorderRadius.circular(100.0),
                       image: DecorationImage(
-                        image: user.profilePhotoUrl != null
-                            ? NetworkImage(user.profilePhotoUrl)
-                            : AssetImage("assets/profilePicture.jpeg"),
+                        image: AssetImage("assets/profilePicture.jpeg"),
                       ),
                     ),
                   )

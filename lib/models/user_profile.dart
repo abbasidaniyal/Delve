@@ -4,12 +4,12 @@ class UserProfile {
   String name;
   String email;
   String gitAccount;
-  String profilePhotoUrl;
+  //String profilePhotoUrl;
 
   UserProfile(
       {
       @required this.name,
       this.email,
-      this.gitAccount,
-      this.profilePhotoUrl});
+      this.gitAccount});
+      //this.profilePhotoUrl});
 }

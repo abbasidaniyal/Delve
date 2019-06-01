@@ -1,8 +1,10 @@
-import 'package:delve/pages/home_page.dart';
+import 'package:delve/scoped_models/main_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import '../pages/landing_page.dart';
+import '../pages/profile_page.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -19,29 +21,17 @@ class MyDrawer extends StatelessWidget {
               
             ),
             child: InkWell(
-              child: Text("Home"),
+              child: Text("Profile"),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return HomePage();
-                    },
-                  ),
-                );
-              },
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(10.0),
-            child: InkWell(
-              child: Text("Login"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginPage();
+                      return ScopedModelDescendant<MainModel>(
+                        builder: (context,child,model){
+                          return ProfilePage(model.loggedInUser);
+                        },
+                      );
                     },
                   ),
                 );
