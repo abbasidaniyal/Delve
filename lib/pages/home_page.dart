@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
+      drawer: Drawer(),
       body: Container(
         child: ListView.builder(
           itemCount: array.length,

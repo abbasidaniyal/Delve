@@ -4,10 +4,10 @@ import '../models/user_profile.dart';
 
 //import 'package:intl/intl.dart';
 
-class PlayerProfilePage extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
   final UserProfile user;
 
-  PlayerProfilePage(this.user);
+  ProfilePage(this.user);
   @override
   Widget build(BuildContext context) {
     double nameSize = MediaQuery.of(context).size.width * 0.05;

@@ -1,9 +1,6 @@
-import 'package:delve/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import '../pages/login_page.dart';
-import '../pages/register_page.dart';
+import '../pages/profile_page.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -20,51 +17,20 @@ class MyDrawer extends StatelessWidget {
               
             ),
             child: InkWell(
-              child: Text("Home"),
+              child: Text("Profile"),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return HomePage();
+                      return ProfilePage();
                     },
                   ),
                 );
               },
             ),
           ),
-          Container(
-            margin: EdgeInsets.all(10.0),
-            child: InkWell(
-              child: Text("Login"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginPage();
-                    },
-                  ),
-                );
-              },
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(10.0),
-            child: InkWell(
-              child: Text("Register"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return RegisterPage();
-                    },
-                  ),
-                );
-              },
-            ),
-          ),
+          
         ],
       ),
     );
