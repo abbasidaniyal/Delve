@@ -16,8 +16,9 @@ class Delve extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            // primaryColor: Colors
-            ),
+          primaryColor: Color.fromRGBO(28, 91, 153, 1),
+          accentColor: Color.fromRGBO(255, 250, 245, 1),
+        ),
         home: WelcomePage(),
       ),
     );
