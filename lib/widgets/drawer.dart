@@ -1,3 +1,4 @@
+import 'package:delve/pages/collab_page.dart';
 import 'package:delve/scoped_models/main_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -31,6 +32,30 @@ class MyDrawer extends StatelessWidget {
                       return ScopedModelDescendant<MainModel>(
                         builder: (context, child, model) {
                           return ProfilePage(model.loggedInUser);
+                        },
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10.0),
+            decoration: BoxDecoration(),
+            child: InkWell(
+              child: Text(
+                "Collaborate",
+                textScaleFactor: 1.3,
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ScopedModelDescendant<MainModel>(
+                        builder: (context, child, model) {
+                          return CollabPage();
                         },
                       );
                     },
