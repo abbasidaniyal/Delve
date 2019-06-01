@@ -44,6 +44,8 @@ flutter:
    - "lib/assets/logo.jpg"
    - "lib/assets/profileBackground.jpg"
    - "lib/assets/postBackground.png"
+   - "lib/assets/profilePicture.jpg"
+   
    #  - images/a_dot_ham.jpeg
 
  

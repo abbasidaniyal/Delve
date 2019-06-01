@@ -19,6 +19,7 @@ class WelcomePage extends StatelessWidget {
         print(token);
         if (token != null) {
           model.accessToken = token;
+          model.getProfileData();
         }
         print(model.accessToken);
         return SplashScreen(

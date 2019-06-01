@@ -25,12 +25,19 @@ mixin LoginModel on Model {
           notifyListeners();
           var body = json.decode(res.body);
           accessToken = body["token"];
+          preferences.remove("token");
           preferences.setString("token", accessToken);
 
           http.get("http://168.61.208.104/api/user/getUser",
               headers: {"token": accessToken}).then((res) {
             if (res.statusCode == 200) {
               print(res.body);
+              var temp = json.decode(res.body);
+              loggedInUser = UserProfile(
+                name: temp["name"],
+                email: temp["email"],
+              );
+              print("LOGGED IN" + loggedInUser.name);
             }
           });
         }
@@ -39,8 +46,25 @@ mixin LoginModel on Model {
     return hasLoggedIn;
   }
 
+  Future<Null> getProfileData() async {
+    await http.get("http://168.61.208.104/api/user/getUser",
+        headers: {"token": accessToken}).then((res) {
+      if (res.statusCode == 200) {
+        print(res.body);
+        var temp = json.decode(res.body);
+        loggedInUser = UserProfile(
+          name: temp["name"],
+          email: temp["email"],
+        );
+        print("LOGGED IN" + loggedInUser.name);
+      }
+    });
+  }
+
   void logout() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.remove("token");
+    preferences.clear();
+    accessToken = null;
+    notifyListeners();
   }
 }

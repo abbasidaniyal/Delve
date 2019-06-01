@@ -19,11 +19,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     MainModel model = ScopedModel.of(context);
     model.initPosts(model.accessToken).then((onValue) {
       setState(() {
+        array = [];
         array = model.postArray;
       });
     });
@@ -35,7 +35,6 @@ class _HomePageState extends State<HomePage> {
       drawer: MyDrawer(),
       appBar: AppBar(
         title: Text("Delve"),
-        
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -83,6 +82,7 @@ class _HomePageState extends State<HomePage> {
                               Text(
                                 array[index].title,
                                 textAlign: TextAlign.center,
+                                maxLines: 2,
                                 style: TextStyle(
                                     fontSize: 24, fontWeight: FontWeight.bold),
                               ),
@@ -90,6 +90,7 @@ class _HomePageState extends State<HomePage> {
                               Container(
                                 child: Text(
                                   array[index].body,
+                                  maxLines: 2,
                                   textAlign: TextAlign.left,
                                 ),
                               )

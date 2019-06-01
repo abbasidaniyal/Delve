@@ -68,8 +68,8 @@ class _LoginPageState extends State<LoginPage>
   }
 
   void submitRegisterForm() {
-    _formKey.currentState.save();
-    if (_formKey.currentState.validate()) {
+    _formKey2.currentState.save();
+    if (_formKey2.currentState.validate()) {
       MainModel model = ScopedModel.of(context);
 
       model.register(registerData).then((status) {
@@ -496,8 +496,8 @@ class _LoginPageState extends State<LoginPage>
                           padding: EdgeInsets.only(
                               top: 10.0, bottom: 10.0, left: 25.0, right: 25.0),
                           child: TextFormField(
-                            focusNode: myFocusNodeEmail,
-                            controller: signupEmailController,
+                            // focusNode: myFocusNodeEmail,
+                            // controller: signupEmailController,
                             keyboardType: TextInputType.text,
                             style: TextStyle(
                                 fontFamily: "WorkSansSemiBold",
@@ -653,9 +653,7 @@ class _LoginPageState extends State<LoginPage>
                             fontFamily: "WorkSansBold"),
                       ),
                     ),
-                    onPressed: () {
-                      submitRegisterForm();
-                    }),
+                    onPressed: submitRegisterForm),
               ),
             ],
           ),

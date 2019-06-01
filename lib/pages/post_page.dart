@@ -26,7 +26,7 @@ class PostPage extends StatelessWidget {
                 thisPost.body,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 18,
                 ),
               ),
             ),

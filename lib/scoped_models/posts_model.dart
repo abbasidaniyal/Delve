@@ -7,6 +7,7 @@ import '../models/post.dart';
 
 mixin PostModel on Model {
   List<Post> postArray = [];
+  List<Post> userPostArray = [];
   bool hasPostLoaded = false;
 
   Future<bool> initPosts(token) async {
@@ -14,7 +15,7 @@ mixin PostModel on Model {
       // "Content-Type": "application/json",
       // "token": token,
     }).then((res) {
-      print(res.body);
+      // print(res.body);
       if (res.statusCode == 200) {
         var temp = json.decode(res.body);
         List<dynamic> array = temp["posts"];
@@ -26,15 +27,37 @@ mixin PostModel on Model {
               body: x["body"],
               writerUsername: x["username"]));
         }
-        print(postArray);
+        // print(postArray);
+      }
+    });
+  }
+
+  Future<bool> initUserPosts(token) async {
+    await http.get("http://168.61.208.104/api/posts/getPosts", headers: {
+      // "Content-Type": "application/json",
+      "token": token,
+    }).then((res) {
+      // print(res.body);
+      if (res.statusCode == 200) {
+        var temp = json.decode(res.body);
+        List<dynamic> array = temp["posts"];
+        userPostArray = [];
+
+        for (var x in array) {
+          userPostArray.add(Post(
+              title: x["title"],
+              body: x["body"],
+              writerUsername: x["username"]));
+        }
+        // print(userPostArray);
       }
     });
   }
 
   Future<bool> createPost(token, postData) async {
     bool postCreated = false;
-    print(json.encode(postData));
-    print(token);
+    // print(json.encode(postData));
+    // print(token);
     await http
         .post("http://168.61.208.104/api/posts/new",
             headers: {
@@ -43,7 +66,7 @@ mixin PostModel on Model {
             },
             body: json.encode(postData))
         .then((res) {
-      print(res.body);
+      // print(res.body);
 
       if (res.statusCode == 200) {
         postCreated = true;
