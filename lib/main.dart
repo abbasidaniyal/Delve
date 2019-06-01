@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import './pages/welcome_page.dart';
 import './scoped_models/main_model.dart';
+import './pages/landing_page.dart';
 
 void main() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();

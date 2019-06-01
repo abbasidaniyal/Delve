@@ -111,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   if (pass != registerData["password"]) {
                     return "Passwords do not match";
                   }
-                  ;
+                  
                 },
                 onSaved: (pass) {
                   setState(() {

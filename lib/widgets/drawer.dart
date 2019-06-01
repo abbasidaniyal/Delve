@@ -4,12 +4,10 @@ import 'package:flutter/widgets.dart';
 
 import '../pages/login_page.dart';
 import '../pages/register_page.dart';
-import '../pages/register_page.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Drawer(
       child: ListView(
         children: <Widget>[
