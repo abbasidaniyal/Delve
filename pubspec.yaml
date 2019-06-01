@@ -12,7 +12,9 @@ dependencies:
   splashscreen:
   scoped_model:
   shared_preferences: ^0.5.3
+  font_awesome_flutter: ^8.4.0
   
+
   flutter:
     sdk: flutter
 
@@ -41,7 +43,7 @@ flutter:
    - "lib/assets/logo.jpg"
    - "lib/assets/profileBackground.jpg"
   #  - images/a_dot_ham.jpeg
-
+ 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

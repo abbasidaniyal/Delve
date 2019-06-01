@@ -2,32 +2,42 @@ import 'package:flutter/material.dart';
 import '../scoped_models/main_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class LoginForm extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _LoginFormState();
+    return _LoginPageState();
   }
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Map<String, String> loginData = {};
 
+
   void submitForm() {
+    _formKey.currentState.save();
     if (_formKey.currentState.validate()) {
       MainModel model = ScopedModel.of(context);
 
-      model.login(loginData);
+      model.login(loginData).then((status){
+        if(status){
+          
+        } else {
+      
+        }
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Login'),
-        ),
-        body: Form(
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
+      body: Container(
+        margin: EdgeInsets.all(20),
+        child: Form(
             key: _formKey,
             child: Column(
               children: <Widget>[
@@ -53,7 +63,17 @@ class _LoginFormState extends State<LoginForm> {
                     });
                   },
                 ),
+                Container(
+                  margin: EdgeInsets.all(20),
+                  child: RaisedButton(
+                    color: Theme.of(context).primaryColor,
+                    child: Text("Submit"),
+                    onPressed: submitForm,
+                  ),
+                )
               ],
-            )));
+            )),
+      ),
+    );
   }
 }

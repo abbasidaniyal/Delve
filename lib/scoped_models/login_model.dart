@@ -3,28 +3,27 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 mixin LoginModel on Model {
-  Future<bool> login(data) async {
-    bool response;
+  bool hasLoggedIn = false;
+
+  
+  Future<bool> login(loginData) async {
+    print(json.encode(loginData));
     await http
-        .post(
-      "http://api.fansportsclub.com/form/",
-      headers: {
-        'Authorization': 'Token $token',
-        "Content-Type": "application/json"
+        .post('http://168.61.208.104/api/auth/login',
+        headers: {
+          "Content-Type": "application/json"
+        },
+            body: json.encode(loginData))
+        .then(
+      (http.Response res) {
+        print(res.body);
+        if (res.statusCode == 200) {
+          print(res.body);
+          hasLoggedIn = true;
+          notifyListeners();
+        }
       },
-      body: json.encode(data),
-    )
-        .then((res) {
-      print(json.encode(data));
-      print(res.statusCode);
-      print(res.body);
-      if (res.statusCode != 200) {
-        response = false;
-      } else {
-        response = true;
-      }
-      notifyListeners();
-    });
-    return response;
+    );
+    return hasLoggedIn;
   }
 }
