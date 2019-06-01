@@ -33,18 +33,27 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MyDrawer(),
-      appBar: AppBar(
-        title: Text("Delve"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        child: Icon(Icons.add,color: Colors.white,),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                 return NewPostPage();
               }));
             },
-          )
-        ],
+      ),
+      appBar: AppBar(
+        title: Text("Delve"),
+        // actions: <Widget>[
+        //   IconButton(
+        //     icon: Icon(Icons.add),
+        //     onPressed: () {
+        //       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+        //         return NewPostPage();
+        //       }));
+        //     },
+        //   )
+        // ],
       ),
       body: ListView.builder(
         scrollDirection: Axis.vertical,

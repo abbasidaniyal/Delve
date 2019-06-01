@@ -24,6 +24,8 @@ class MyDrawer extends StatelessWidget {
                 textScaleFactor: 1.3,
               ),
               onTap: () {
+                Navigator.pop(context);
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -50,6 +52,7 @@ class MyDrawer extends StatelessWidget {
               onTap: () {
                 MainModel model = ScopedModel.of(context);
                 model.logout();
+                Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
