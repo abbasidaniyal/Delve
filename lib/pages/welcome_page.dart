@@ -8,7 +8,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-        seconds: 5,
+        seconds: 2,
         image: Image.asset("lib/assets/logo.jpg"),
         photoSize: 200,
         backgroundColor: Theme.of(context).primaryColor,

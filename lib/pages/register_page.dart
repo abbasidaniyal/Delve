@@ -13,10 +13,19 @@ class _RegisterPageState extends State<RegisterPage> {
   Map<String, String> registerData = {};
 
   void submitForm() {
+    _formKey.currentState.save();
     if (_formKey.currentState.validate()) {
       MainModel model = ScopedModel.of(context);
 
-      model.register(registerData);
+      model.register(registerData).then((status){
+        if(status){
+          
+        } else {
+          Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text("Error, Re-try"),
+          ));
+        }
+      });
     }
   }
 
@@ -30,7 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
         margin: EdgeInsets.all(20.0),
         child: Form(
           key: _formKey,
-          child: Column(
+          child: ListView(
             children: <Widget>[
               TextFormField(
                 decoration: InputDecoration(
@@ -114,9 +123,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 obscureText: true,
                 keyboardType: TextInputType.text,
               ),
-              RaisedButton(
-                child: Text("Submit"),
-                onPressed: submitForm,
+              Container(
+                margin: EdgeInsets.all(20),
+                child: RaisedButton(
+                  color: Theme.of(context).primaryColor,
+                  child: Text("Submit"),
+                  onPressed: submitForm,
+                ),
               )
             ],
           ),
